@@ -5,7 +5,7 @@ package apollo.control.calibrationtable;
 message ControlCalibrationTable {
   repeated ControlCalibrationInfo calibration = 1;
 }
-
+//
 message ControlCalibrationInfo {
   optional double speed = 1;
   optional double acceleration = 2;
