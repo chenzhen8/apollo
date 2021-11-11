@@ -71,6 +71,7 @@ class ControlComponent final : public apollo::cyber::TimerComponent {
   void OnLocalization(
       const std::shared_ptr<apollo::localization::LocalizationEstimate>
           &localization);
+  void OnPerceptionObstacle(const std::shared_ptr<apollo::perception::PerceptionObstacles> &perceptionObstacle);
 
   // Upon receiving monitor message
   void OnMonitor(
@@ -89,7 +90,8 @@ class ControlComponent final : public apollo::cyber::TimerComponent {
   planning::ADCTrajectory latest_trajectory_;
   PadMessage pad_msg_;
   common::Header latest_replan_trajectory_header_;
-
+  perception::PerceptionObstacles latest_perceptionObstacle_;
+  
   ControllerAgent controller_agent_;
 
   bool estop_ = false;
@@ -105,6 +107,7 @@ class ControlComponent final : public apollo::cyber::TimerComponent {
 
   std::mutex mutex_;
 
+  std::shared_ptr<cyber::Reader<apollo::perception::PerceptionObstacles>> perception_obstacle_reader_;
   std::shared_ptr<cyber::Reader<apollo::canbus::Chassis>> chassis_reader_;
   std::shared_ptr<cyber::Reader<PadMessage>> pad_msg_reader_;
   std::shared_ptr<cyber::Reader<apollo::localization::LocalizationEstimate>>

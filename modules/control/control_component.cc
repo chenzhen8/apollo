@@ -61,6 +61,14 @@ bool ControlComponent::Init() {
     monitor_logger_buffer_.ERROR("Control init controller failed! Stopping...");
     return false;
   }
+  //changged  node_->CreateReader<TrafficLightDetection>(
+  cyber::ReaderConfig perception_obstacle_reader_config;
+  perception_obstacle_reader_config.channel_name = FLAGS_perception_obstacle_topic;
+  perception_obstacle_reader_config.pending_queue_size = FLAGS_perception_obstacle_pending_queue_size;
+
+  perception_obstacle_reader_ =
+      node_->CreateReader<PerceptionObstacles>(perception_obstacle_reader_config, nullptr);
+  ACHECK(perception_obstacle_reader_ != nullptr);
 
   cyber::ReaderConfig chassis_reader_config;
   chassis_reader_config.channel_name = FLAGS_chassis_topic;
@@ -119,6 +127,11 @@ bool ControlComponent::Init() {
   pad_msg_.set_action(control_conf_.action());
 
   return true;
+}
+void OnPerceptionObstacle(const std::shared_ptr<PerceptionObstacles> &perceptionObstacle){
+  ADEBUG << "Received perceptionObstacle data: run perceptionObstacle callback.";
+  std::lock_guard<std::mutex> lock(mutex_);
+  latest_perceptionObstacle_.CopyFrom(*perceptionObstacle);
 }
 
 void ControlComponent::OnPad(const std::shared_ptr<PadMessage> &pad) {
@@ -278,6 +291,14 @@ Status ControlComponent::ProduceControlCommand(
 
 bool ControlComponent::Proc() {
   const auto start_time = Clock::Now();
+
+  perception_obstacle_reader_->Observe();
+  const auto &perceptionObstacle_msg = perception_obstacle_reader_->GetLatestObserved();
+  if (perceptionObstacle_msg == nullptr) {
+    AERROR << "PerceptionObstacle msg is not ready!";
+    return false;
+  }
+  OnPerceptionObstacle(perceptionObstacle_msg);
 
   chassis_reader_->Observe();
   const auto &chassis_msg = chassis_reader_->GetLatestObserved();

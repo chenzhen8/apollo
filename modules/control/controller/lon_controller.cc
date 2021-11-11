@@ -182,9 +182,9 @@ Status LonController::ComputeControlCommand(
   double brake_cmd = 0.0;
   double throttle_cmd = 0.0;
   double ts = lon_controller_conf.ts();
-  double preview_time = lon_controller_conf.preview_window() * ts;
+  double preview_time = lon_controller_conf.preview_window() * ts;//0.02
   bool enable_leadlag =
-      lon_controller_conf.enable_reverse_leadlag_compensation();
+      lon_controller_conf.enable_reverse_leadlag_compensation();//0
 
   if (preview_time < 0.0) {
     const auto error_msg =
@@ -203,7 +203,7 @@ Status LonController::ComputeControlCommand(
                             -station_error_limit, station_error_limit);
   } else {
     station_error_limited = common::math::Clamp(
-        debug->station_error(), -station_error_limit, station_error_limit);
+        debug->station_error(), -station_error_limit, station_error_limit);//-2 to 2
   }
 
   if (trajectory_message_->gear() == canbus::Chassis::GEAR_REVERSE) {
