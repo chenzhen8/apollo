@@ -133,17 +133,18 @@ bool ControlComponent::Init() {
 
   return true;
 }
-void OnPerceptionObstacle(const std::shared_ptr<PerceptionObstacles> &perceptionObstacle){
-  ADEBUG << "Received perceptionObstacle data: run perceptionObstacle callback.";
-  std::lock_guard<std::mutex> lock(mutex_);
-  latest_perceptionObstacle_.CopyFrom(*perceptionObstacle);
-}
 
 void ControlComponent::OnPad(const std::shared_ptr<PadMessage> &pad) {
   std::lock_guard<std::mutex> lock(mutex_);
   pad_msg_.CopyFrom(*pad);
   ADEBUG << "Received Pad Msg:" << pad_msg_.DebugString();
   AERROR_IF(!pad_msg_.has_action()) << "pad message check failed!";
+}
+
+void ControlComponent::OnPerceptionObstacle(const std::shared_ptr<PerceptionObstacles> &perceptionObstacle){
+  ADEBUG << "Received perceptionObstacle data: run perceptionObstacle callback.";
+  std::lock_guard<std::mutex> lock(mutex_);
+  latest_perceptionObstacle_.CopyFrom(*perceptionObstacle);
 }
 
 void ControlComponent::OnChassis(const std::shared_ptr<Chassis> &chassis) {
