@@ -30,6 +30,8 @@
 #include "modules/control/proto/pad_msg.pb.h"
 #include "modules/localization/proto/localization.pb.h"
 #include "modules/planning/proto/planning.pb.h"
+#include "modules/prediction/proto/prediction_obstacle.pb.h"
+#include "modules/perception/proto/traffic_light_detection.pb.h"
 
 #include "modules/common/util/util.h"
 #include "modules/control/common/dependency_injector.h"
