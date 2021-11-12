@@ -110,15 +110,16 @@ class ControlComponent final : public apollo::cyber::TimerComponent {
   ControlConf control_conf_;
 
   std::mutex mutex_;
-
-  std::shared_ptr<cyber::Reader<apollo::perception::PerceptionObstacles>> perception_obstacle_reader_;
+  std::shared_ptr<cyber::Reader<apollo::perception::PerceptionObstacles>>
+      perception_obstacle_reader_;
+  std::shared_ptr<cyber::Reader<apollo::perception::TrafficLightDetection>>
+      perception_traffic_light_reader_;
   std::shared_ptr<cyber::Reader<apollo::canbus::Chassis>> chassis_reader_;
   std::shared_ptr<cyber::Reader<PadMessage>> pad_msg_reader_;
   std::shared_ptr<cyber::Reader<apollo::localization::LocalizationEstimate>>
       localization_reader_;
   std::shared_ptr<cyber::Reader<apollo::planning::ADCTrajectory>>
       trajectory_reader_;
-
   std::shared_ptr<cyber::Writer<ControlCommand>> control_cmd_writer_;
   // when using control submodules
   std::shared_ptr<cyber::Writer<LocalView>> local_view_writer_;
