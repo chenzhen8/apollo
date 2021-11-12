@@ -34,6 +34,11 @@ using apollo::common::VehicleStateProvider;
 using apollo::cyber::Clock;
 using apollo::localization::LocalizationEstimate;
 using apollo::planning::ADCTrajectory;
+using apollo::perception::PerceptionObstacle;
+using apollo::perception::PerceptionObstacles;
+using apollo::perception::SensorMeasurement;
+using apollo::perception::TrafficLight;
+using apollo::perception::TrafficLightDetection;
 
 ControlComponent::ControlComponent()
     : monitor_logger_buffer_(common::monitor::MonitorMessageItem::CONTROL) {}
