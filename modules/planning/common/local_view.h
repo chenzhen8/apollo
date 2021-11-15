@@ -26,6 +26,8 @@
 #include "modules/prediction/proto/prediction_obstacle.pb.h"
 #include "modules/routing/proto/routing.pb.h"
 #include "modules/storytelling/proto/story.pb.h"
+#include "modules/perception/camera/app/proto/perception.pb.h"
+
 
 namespace apollo {
 namespace planning {
