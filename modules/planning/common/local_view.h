@@ -44,6 +44,7 @@ struct LocalView {
   std::shared_ptr<relative_map::MapMsg> relative_map;
   std::shared_ptr<PadMessage> pad_msg;
   std::shared_ptr<storytelling::Stories> stories;
+  std::shared_ptr<perception::PerceptionObstacles> perception_obstacles;
 };
 
 }  // namespace planning
