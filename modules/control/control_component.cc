@@ -343,7 +343,7 @@ bool ControlComponent::Proc() {
     local_view_.mutable_chassis()->CopyFrom(latest_chassis_);
     local_view_.mutable_trajectory()->CopyFrom(latest_trajectory_);
     local_view_.mutable_localization()->CopyFrom(latest_localization_);
-    local_view_.mutable_perceptionObstacle()->CopyFrom(latest_perceptionObstacle_);
+    //local_view_.mutable_perceptionObstacle()->CopyFrom(latest_perceptionObstacle_);
     if (pad_msg != nullptr) {
       local_view_.mutable_pad_msg()->CopyFrom(pad_msg_);
     }

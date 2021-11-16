@@ -26,8 +26,6 @@
 #include "modules/prediction/proto/prediction_obstacle.pb.h"
 #include "modules/routing/proto/routing.pb.h"
 #include "modules/storytelling/proto/story.pb.h"
-#include "modules/perception/camera/app/proto/perception.pb.h"
-
 
 namespace apollo {
 namespace planning {
@@ -46,7 +44,6 @@ struct LocalView {
   std::shared_ptr<relative_map::MapMsg> relative_map;
   std::shared_ptr<PadMessage> pad_msg;
   std::shared_ptr<storytelling::Stories> stories;
-  std::shared_ptr<perception::PerceptionObstacles> perception_obstacles;
 };
 
 }  // namespace planning
