@@ -30,7 +30,7 @@
 #include "modules/control/proto/pad_msg.pb.h"
 #include "modules/localization/proto/localization.pb.h"
 #include "modules/planning/proto/planning.pb.h"
-//#include "modules/prediction/proto/prediction_obstacle.pb.h"
+#include "modules/prediction/proto/prediction_obstacle.pb.h"
 
 
 #include "modules/common/util/util.h"
@@ -98,10 +98,8 @@ class ControlComponent final : public apollo::cyber::TimerComponent {
   PadMessage pad_msg_;
   common::Header latest_replan_trajectory_header_;
   perception::PerceptionObstacles latest_perceptionObstacle_;
-  
   prediction::PredictionObstacles latest_predictionObstacle_;
-
-  
+    
   ControllerAgent controller_agent_;
 
   bool estop_ = false;
