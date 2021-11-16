@@ -39,6 +39,9 @@ using apollo::perception::PerceptionObstacles;
 using apollo::perception::SensorMeasurement;
 using apollo::perception::TrafficLight;
 using apollo::perception::TrafficLightDetection;
+using apollo::prediction::ObstacleInteractiveTag;
+using apollo::prediction::ObstaclePriority;
+using apollo::prediction::PredictionObstacle;
 using apollo::prediction::PredictionObstacles;
 
 ControlComponent::ControlComponent()
