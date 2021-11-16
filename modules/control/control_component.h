@@ -73,8 +73,11 @@ class ControlComponent final : public apollo::cyber::TimerComponent {
       const std::shared_ptr<apollo::localization::LocalizationEstimate>
           &localization);
   void OnPerceptionObstacle(const std::shared_ptr<apollo::perception::PerceptionObstacles> &perceptionObstacle);
-  void OnPredictionObstacle(const std::shared_ptr<apollo::prediction::PredictionObstacles> &predictionObstacle);
+  //void OnPredictionObstacle(const std::shared_ptr<apollo::prediction::PredictionObstacles> &predictionObstacle);
 
+    void OnPredictionObstacle(
+      const std::shared_ptr<apollo::prediction::PredictionObstacles>
+          &predictionObstacle);
 
   // Upon receiving monitor message
   void OnMonitor(
