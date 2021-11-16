@@ -30,7 +30,7 @@
 #include "modules/control/proto/pad_msg.pb.h"
 #include "modules/localization/proto/localization.pb.h"
 #include "modules/planning/proto/planning.pb.h"
-//#include "modules/prediction/proto/prediction_obstacle.pb.h"
+#include "modules/prediction/proto/prediction_obstacle.pb.h"
 
 
 #include "modules/common/util/util.h"

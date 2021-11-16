@@ -79,6 +79,7 @@ DEFINE_bool(enable_navigation_mode_error_filter, false,
 DEFINE_bool(enable_navigation_mode_position_update, true,
             "Enable position update for navigation mode");
 
+DEFINE_int32(prediction_obstacle_pending_queue_size, 10, "Max prediction_obstacle pending queue size");
 DEFINE_int32(perception_obstacle_pending_queue_size, 10, "Max perception_obstacle pending queue size");
 DEFINE_int32(chassis_pending_queue_size, 10, "Max chassis pending queue size");
 DEFINE_int32(planning_pending_queue_size, 10,
