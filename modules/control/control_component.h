@@ -98,6 +98,7 @@ class ControlComponent final : public apollo::cyber::TimerComponent {
   PadMessage pad_msg_;
   common::Header latest_replan_trajectory_header_;
   perception::PerceptionObstacles latest_perceptionObstacle_;
+  
   prediction::PredictionObstacles latest_predictionObstacle_;
 
   
