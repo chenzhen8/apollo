@@ -30,7 +30,7 @@
 #include "modules/control/proto/pad_msg.pb.h"
 #include "modules/localization/proto/localization.pb.h"
 #include "modules/planning/proto/planning.pb.h"
-#include "modules/prediction/proto/prediction_obstacle.pb.h"
+//#include "modules/prediction/proto/prediction_obstacle.pb.h"
 
 
 #include "modules/common/util/util.h"
@@ -76,9 +76,9 @@ class ControlComponent final : public apollo::cyber::TimerComponent {
   void OnPerceptionObstacle(const std::shared_ptr<apollo::perception::PerceptionObstacles> &perceptionObstacle);
   //void OnPredictionObstacle(const std::shared_ptr<apollo::prediction::PredictionObstacles> &predictionObstacle);
 
-    void OnPredictionObstacle(
+ void OnPredictionObstacle(
       const std::shared_ptr<apollo::prediction::PredictionObstacles>
-          &predictionObstacle);
+        &predictionObstacle);
 
   // Upon receiving monitor message
   void OnMonitor(
