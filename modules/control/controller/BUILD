@@ -165,6 +165,7 @@ cc_library(
         ":lat_controller",
         ":lon_controller",
         ":mpc_controller",
+        ":Aptiv_Algo",
         "@eigen",
     ],
 )
@@ -179,6 +180,7 @@ cc_library(
         ":lat_controller",
         ":lon_controller",
         ":mpc_controller",
+        ":Aptiv_Algo",
         "//cyber",
         "//cyber/time:clock",
         "//modules/common/util:factory",
