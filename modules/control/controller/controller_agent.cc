@@ -24,6 +24,8 @@
 #include "modules/control/controller/lat_controller.h"
 #include "modules/control/controller/lon_controller.h"
 #include "modules/control/controller/mpc_controller.h"
+#include "modules/control/controller/Aptiv_Algo.h"
+
 
 namespace apollo {
 namespace control {
@@ -50,6 +52,11 @@ void ControllerAgent::RegisterControllers(const ControlConf *control_conf) {
         controller_factory_.Register(
             ControlConf::LON_CONTROLLER,
             []() -> Controller * { return new LonController(); });
+        break;
+      case ControlConf::AptivAlgo_CONTROLLER:
+        controller_factory_.Register(
+            ControlConf::AptivAlgo_CONTROLLER,
+            []() -> Controller * { return new Aptiv_AlgoController(); });
         break;
       default:
         AERROR << "Unknown active controller type:" << active_controller;
