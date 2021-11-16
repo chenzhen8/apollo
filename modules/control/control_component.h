@@ -76,9 +76,9 @@ class ControlComponent final : public apollo::cyber::TimerComponent {
   void OnPerceptionObstacle(const std::shared_ptr<apollo::perception::PerceptionObstacles> &perceptionObstacle);
   //void OnPredictionObstacle(const std::shared_ptr<apollo::prediction::PredictionObstacles> &predictionObstacle);
 
- void OnPredictionObstacle(
-      const std::shared_ptr<apollo::prediction::PredictionObstacles>
-        &predictionObstacle);
+ //void OnPredictionObstacle(
+     // const std::shared_ptr<apollo::prediction::PredictionObstacles>
+      //  &predictionObstacle);
 
   // Upon receiving monitor message
   void OnMonitor(
@@ -115,8 +115,8 @@ class ControlComponent final : public apollo::cyber::TimerComponent {
   ControlConf control_conf_;
 
   std::mutex mutex_;
-  std::shared_ptr<cyber::Reader<apollo::prediction::PredictionObstacles>>
-      prediction_obstacle_reader_;
+  //std::shared_ptr<cyber::Reader<apollo::prediction::PredictionObstacles>>
+      //prediction_obstacle_reader_;
   std::shared_ptr<cyber::Reader<apollo::perception::PerceptionObstacles>>
       perception_obstacle_reader_;
   std::shared_ptr<cyber::Reader<apollo::perception::TrafficLightDetection>>
