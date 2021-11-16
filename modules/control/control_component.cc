@@ -39,6 +39,7 @@ using apollo::perception::PerceptionObstacles;
 using apollo::perception::SensorMeasurement;
 using apollo::perception::TrafficLight;
 using apollo::perception::TrafficLightDetection;
+using apollo::prediction::PredictionObstacles;
 
 ControlComponent::ControlComponent()
     : monitor_logger_buffer_(common::monitor::MonitorMessageItem::CONTROL) {}
@@ -74,6 +75,15 @@ bool ControlComponent::Init() {
   perception_obstacle_reader_ =
       node_->CreateReader<PerceptionObstacles>(perception_obstacle_reader_config, nullptr);
   ACHECK(perception_obstacle_reader_ != nullptr);
+
+  //prediction
+  cyber::ReaderConfig prediction_obstacle_reader_config;
+  prediction_obstacle_reader_config.channel_name = FLAGS_prediction_topic;
+  prediction_obstacle_reader_config.pending_queue_size = FLAGS_prediction_obstacle_pending_queue_size;
+
+  prediction_obstacle_reader_ =
+      node_->CreateReader<PredictionObstacles>(prediction_obstacle_reader_config, nullptr);
+  ACHECK(prediction_obstacle_reader_ != nullptr);
 
   cyber::ReaderConfig chassis_reader_config;
   chassis_reader_config.channel_name = FLAGS_chassis_topic;
@@ -145,6 +155,13 @@ void ControlComponent::OnPerceptionObstacle(const std::shared_ptr<PerceptionObst
   ADEBUG << "Received perceptionObstacle data: run perceptionObstacle callback.";
   std::lock_guard<std::mutex> lock(mutex_);
   latest_perceptionObstacle_.CopyFrom(*perceptionObstacle);
+}
+
+//predication
+void ControlComponent::OnPredictionObstacle(const std::shared_ptr<PredictionObstacles> &predictionObstacle){
+  ADEBUG << "Received predictionObstacle data: run predictionObstacle callback.";
+  std::lock_guard<std::mutex> lock(mutex_);
+  latest_predictionObstacle_.CopyFrom(*predictionObstacle);
 }
 
 void ControlComponent::OnChassis(const std::shared_ptr<Chassis> &chassis) {
@@ -305,6 +322,14 @@ bool ControlComponent::Proc() {
     return false;
   }
   OnPerceptionObstacle(perceptionObstacle_msg);
+//predication
+    prediction_obstacle_reader_->Observe();
+  const auto &predictionObstacle_msg = prediction_obstacle_reader_->GetLatestObserved();
+  if (predictionObstacle_msg == nullptr) {
+    AERROR << "predictionObstacle msg is not ready!";
+    return false;
+  }
+  OnPredictionObstacle(predictionObstacle_msg);
 
   chassis_reader_->Observe();
   const auto &chassis_msg = chassis_reader_->GetLatestObserved();
