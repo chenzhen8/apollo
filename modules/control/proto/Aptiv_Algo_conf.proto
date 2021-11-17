@@ -6,9 +6,9 @@ import "modules/control/proto/calibration_table.proto";
 import "modules/control/proto/leadlag_conf.proto";
 import "modules/control/proto/pid_conf.proto";
 
-message FilterConf {
-  optional int32 cutoff_freq = 1;
-}
+//message FilterConf {
+// optional int32 cutoff_freq = 1;
+//}
 
 // controller param
 message Aptiv_AlgoConf {

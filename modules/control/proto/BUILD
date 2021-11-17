@@ -8,12 +8,12 @@ package(default_visibility = ["//visibility:public"])
 cc_proto_library(
     name = "Aptiv_Algo_conf_cc_proto",
     deps = [
-        ":Aptiv_Algo_conf_proto",
+        ":lon_controller_conf_proto",
     ],
 )
 
 proto_library(
-    name = "Aptiv_Algo_conf_proto",
+    name = "lon_controller_conf_proto",
     srcs = ["Aptiv_Algo_conf.proto"],
     deps = [
         ":calibration_table_proto",
@@ -321,7 +321,6 @@ proto_library(
         ":lat_controller_conf_proto",
         ":lon_controller_conf_proto",
         ":mpc_controller_conf_proto",
-        ":Aptiv_Algo_conf_proto",
         ":pad_msg_proto",
         "//modules/canbus/proto:chassis_proto",
     ],
