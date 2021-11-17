@@ -28,7 +28,7 @@ max_steering_percentage_allowed: 100
 minimum_speed_resolution: 0.2
 query_relative_time: 0.8
 minimum_speed_protection: 0.1
-Aptiv_Algo_conf {
+aptiv_algo_conf {
   ts: 0.01
   brake_minimum_action: 0.0
   throttle_minimum_action: 0.0
