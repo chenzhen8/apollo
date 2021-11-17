@@ -130,8 +130,8 @@ Status Aptiv_AlgoController::Init(std::shared_ptr<DependencyInjector> injector,
 
 void Aptiv_AlgoController::SetDigitalFilterPitchAngle(
     const Aptiv_AlgoConf &aptiv_algo_conf) {
-  double cutoff_freq =
-      aptiv_algo_conf.pitch_angle_filter_conf().cutoff_freq();
+  double cutoff_freq = 5;
+      //aptiv_algo_conf.pitch_angle_filter_conf().cutoff_freq();
   double ts = aptiv_algo_conf.ts();
   SetDigitalFilter(ts, cutoff_freq, &digital_filter_pitch_angle_);
 }

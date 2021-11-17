@@ -6,9 +6,9 @@ import "modules/control/proto/calibration_table.proto";
 import "modules/control/proto/leadlag_conf.proto";
 import "modules/control/proto/pid_conf.proto";
 
-message FilterConf {
-  optional int32 cutoff_freq = 1;
-}
+//message FilterConf {
+//  optional int32 cutoff_freq = 1;
+//}
 
 // controller param
 message Aptiv_AlgoConf {
@@ -26,7 +26,7 @@ message Aptiv_AlgoConf {
   optional double switch_speed = 11;  // low/high speed controller switch speed
   optional PidConf reverse_station_pid_conf = 12;
   optional PidConf reverse_speed_pid_conf = 13;
-  optional FilterConf pitch_angle_filter_conf = 14;
+  //optional FilterConf pitch_angle_filter_conf = 14;
   optional LeadlagConf reverse_station_leadlag_conf = 15;
   optional LeadlagConf reverse_speed_leadlag_conf = 16;
 
