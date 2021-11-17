@@ -27,7 +27,7 @@ py_proto_library(
     deps = [
         ":calibration_table_py_pb2",
         ":leadlag_conf_py_pb2",
-        ":Aptiv_Algo_conf_proto",
+        ":lon_controller_conf_proto",
         ":pid_conf_py_pb2",
     ],
 )
