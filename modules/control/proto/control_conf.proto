@@ -52,19 +52,19 @@ message ControlConf {
 
   optional apollo.control.LatControllerConf lat_controller_conf = 28;
   optional apollo.control.LonControllerConf lon_controller_conf = 29;
-  optional apollo.control.Aptiv_AlgoConf Aptiv_Algo_conf = 38;
+  optional apollo.control.Aptiv_AlgoConf Aptiv_Algo_conf = 30;
 
-  optional double trajectory_period = 30;
-  optional double chassis_period = 31;
-  optional double localization_period = 32;
+  optional double trajectory_period = 31;
+  optional double chassis_period = 32;
+  optional double localization_period = 33;
 
-  optional double minimum_speed_resolution = 33;
+  optional double minimum_speed_resolution = 34;
 
-  optional apollo.control.MPCControllerConf mpc_controller_conf = 34;
+  optional apollo.control.MPCControllerConf mpc_controller_conf = 35;
 
-  optional double query_relative_time = 35;
-  optional double minimum_speed_protection = 36;
+  optional double query_relative_time = 36;
+  optional double minimum_speed_protection = 37;
 
-  optional double max_path_remain_when_stopped = 37 [default = 0.3];
+  optional double max_path_remain_when_stopped = 38 [default = 0.3];
   
 }
