@@ -23,7 +23,7 @@ max_planning_delay_threshold: 4.0
 action: STOP
 soft_estop_brake: 50.0
 active_controllers: AptivAlgo_CONTROLLER
-active_controllers: LON_CONTROLLER
+active_controllers: LAT_CONTROLLER
 max_steering_percentage_allowed: 100
 minimum_speed_resolution: 0.2
 query_relative_time: 0.8
