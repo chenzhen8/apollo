@@ -101,44 +101,44 @@ Status Aptiv_AlgoController::Init(std::shared_ptr<DependencyInjector> injector,
                   "Failed to load AptivAlgo conf");
   }
   injector_ = injector;
-  const Aptiv_AlgoConf &Aptiv_Algo_conf =
+  const Aptiv_AlgoConf &aptiv_algo_conf =
       control_conf_->aptiv_algo_conf();
-  double ts = Aptiv_Algo_conf.ts();
+  double ts = aptiv_algo_conf.ts();
   bool enable_leadlag =
-      Aptiv_Algo_conf.enable_reverse_leadlag_compensation();
+      aptiv_algo_conf.enable_reverse_leadlag_compensation();
 
-  station_pid_controller_.Init(Aptiv_Algo_conf.station_pid_conf());
-  speed_pid_controller_.Init(Aptiv_Algo_conf.low_speed_pid_conf());
+  station_pid_controller_.Init(aptiv_algo_conf.station_pid_conf());
+  speed_pid_controller_.Init(aptiv_algo_conf.low_speed_pid_conf());
 
   if (enable_leadlag) {
     station_leadlag_controller_.Init(
-        Aptiv_Algo_conf.reverse_station_leadlag_conf(), ts);
+        aptiv_algo_conf.reverse_station_leadlag_conf(), ts);
     speed_leadlag_controller_.Init(
-        Aptiv_Algo_conf.reverse_speed_leadlag_conf(), ts);
+        aptiv_algo_conf.reverse_speed_leadlag_conf(), ts);
   }
 
   vehicle_param_.CopyFrom(
       common::VehicleConfigHelper::Instance()->GetConfig().vehicle_param());
 
-  SetDigitalFilterPitchAngle(Aptiv_Algo_conf);
+  SetDigitalFilterPitchAngle(aptiv_algo_conf);
 
-  LoadControlCalibrationTable(Aptiv_Algo_conf);
+  LoadControlCalibrationTable(aptiv_algo_conf);
   controller_initialized_ = true;
 
   return Status::OK();
 }
 
 void Aptiv_AlgoController::SetDigitalFilterPitchAngle(
-    const Aptiv_AlgoConf &Aptiv_Algo_conf) {
+    const Aptiv_AlgoConf &aptiv_algo_conf) {
   double cutoff_freq =
-      Aptiv_Algo_conf.pitch_angle_filter_conf().cutoff_freq();
-  double ts = Aptiv_Algo_conf.ts();
+      aptiv_algo_conf.pitch_angle_filter_conf().cutoff_freq();
+  double ts = aptiv_algo_conf.ts();
   SetDigitalFilter(ts, cutoff_freq, &digital_filter_pitch_angle_);
 }
 
 void Aptiv_AlgoController::LoadControlCalibrationTable(
-    const Aptiv_AlgoConf &Aptiv_Algo_conf) {
-  const auto &control_table = Aptiv_Algo_conf.calibration_table();
+    const Aptiv_AlgoConf &aptiv_algo_conf) {
+  const auto &control_table = aptiv_algo_conf.calibration_table();
   AINFO << "Control calibration table loaded";
   AINFO << "Control calibration table size is "
         << control_table.calibration_size();
@@ -173,18 +173,18 @@ Status Aptiv_AlgoController::ComputeControlCommand(
           trajectory_message_->header().sequence_num()) {
     trajectory_analyzer_.reset(new TrajectoryAnalyzer(trajectory_message_));
   }
-  const Aptiv_AlgoConf &Aptiv_Algo_conf =
-      control_conf_->Aptiv_Algo_conf();
+  const Aptiv_AlgoConf &aptiv_algo_conf =
+      control_conf_->aptiv_algo_conf();
 
   auto debug = cmd->mutable_debug()->mutable_simple_lon_debug();
   debug->Clear();
 
   double brake_cmd = 0.0;
   double throttle_cmd = 0.0;
-  double ts = Aptiv_Algo_conf.ts();
-  double preview_time = Aptiv_Algo_conf.preview_window() * ts;//0.02
+  double ts = aptiv_algo_conf.ts();
+  double preview_time = aptiv_algo_conf.preview_window() * ts;//0.02
   bool enable_leadlag =
-      Aptiv_Algo_conf.enable_reverse_leadlag_compensation();//0
+      aptiv_algo_conf.enable_reverse_leadlag_compensation();//0
 
   if (preview_time < 0.0) {
     const auto error_msg =
@@ -195,7 +195,7 @@ Status Aptiv_AlgoController::ComputeControlCommand(
   ComputeLongitudinalErrors(trajectory_analyzer_.get(), preview_time, ts,
                             debug);
 
-  double station_error_limit = Aptiv_Algo_conf.station_error_limit();
+  double station_error_limit = aptiv_algo_conf.station_error_limit();
   double station_error_limited = 0.0;
   if (FLAGS_enable_speed_station_preview) {
     station_error_limited =
@@ -208,19 +208,19 @@ Status Aptiv_AlgoController::ComputeControlCommand(
 
   if (trajectory_message_->gear() == canbus::Chassis::GEAR_REVERSE) {
     station_pid_controller_.SetPID(
-        Aptiv_Algo_conf.reverse_station_pid_conf());
-    speed_pid_controller_.SetPID(Aptiv_Algo_conf.reverse_speed_pid_conf());
+        aptiv_algo_conf.reverse_station_pid_conf());
+    speed_pid_controller_.SetPID(aptiv_algo_conf.reverse_speed_pid_conf());
     if (enable_leadlag) {
       station_leadlag_controller_.SetLeadlag(
-          Aptiv_Algo_conf.reverse_station_leadlag_conf());
+          aptiv_algo_conf.reverse_station_leadlag_conf());
       speed_leadlag_controller_.SetLeadlag(
-          Aptiv_Algo_conf.reverse_speed_leadlag_conf());
+          aptiv_algo_conf.reverse_speed_leadlag_conf());
     }
   } else if (injector_->vehicle_state()->linear_velocity() <=
-             Aptiv_Algo_conf.switch_speed()) {
-    speed_pid_controller_.SetPID(Aptiv_Algo_conf.low_speed_pid_conf());
+             aptiv_algo_conf.switch_speed()) {
+    speed_pid_controller_.SetPID(aptiv_algo_conf.low_speed_pid_conf());
   } else {
-    speed_pid_controller_.SetPID(Aptiv_Algo_conf.high_speed_pid_conf());
+    speed_pid_controller_.SetPID(aptiv_algo_conf.high_speed_pid_conf());
   }
 
   double speed_offset =
@@ -231,7 +231,7 @@ Status Aptiv_AlgoController::ComputeControlCommand(
 
   double speed_controller_input = 0.0;
   double speed_controller_input_limit =
-      Aptiv_Algo_conf.speed_controller_input_limit();
+      aptiv_algo_conf.speed_controller_input_limit();
   double speed_controller_input_limited = 0.0;
   if (FLAGS_enable_speed_station_preview) {
     speed_controller_input = speed_offset + debug->preview_speed_error();
@@ -283,19 +283,19 @@ Status Aptiv_AlgoController::ComputeControlCommand(
     acceleration_cmd =
         (chassis->gear_location() == canbus::Chassis::GEAR_REVERSE)
             ? std::max(acceleration_cmd,
-                       -Aptiv_Algo_conf.standstill_acceleration())
+                       -aptiv_algo_conf.standstill_acceleration())
             : std::min(acceleration_cmd,
-                       Aptiv_Algo_conf.standstill_acceleration());
+                       aptiv_algo_conf.standstill_acceleration());
     ADEBUG << "Stop location reached";
     debug->set_is_full_stop(true);
   }
 
   double throttle_lowerbound =
       std::max(vehicle_param_.throttle_deadzone(),
-               Aptiv_Algo_conf.throttle_minimum_action());
+               aptiv_algo_conf.throttle_minimum_action());
   double brake_lowerbound =
       std::max(vehicle_param_.brake_deadzone(),
-               Aptiv_Algo_conf.brake_minimum_action());
+               aptiv_algo_conf.brake_minimum_action());
   double calibration_value = 0.0;
   double acceleration_lookup =
       (chassis->gear_location() == canbus::Chassis::GEAR_REVERSE)
