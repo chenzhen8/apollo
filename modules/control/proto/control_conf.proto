@@ -52,6 +52,7 @@ message ControlConf {
 
   optional apollo.control.LatControllerConf lat_controller_conf = 28;
   optional apollo.control.LonControllerConf lon_controller_conf = 29;
+  optional apollo.control.Aptiv_AlgoConf Aptiv_Algo_conf = 38;
 
   optional double trajectory_period = 30;
   optional double chassis_period = 31;
@@ -65,5 +66,5 @@ message ControlConf {
   optional double minimum_speed_protection = 36;
 
   optional double max_path_remain_when_stopped = 37 [default = 0.3];
-  optional apollo.control.Aptiv_AlgoConf Aptiv_Algo_conf = 38;
+  
 }
