@@ -52,7 +52,7 @@ message ControlConf {
 
   optional apollo.control.LatControllerConf lat_controller_conf = 28;
   optional apollo.control.LonControllerConf lon_controller_conf = 29;
-  optional apollo.control.Aptiv_AlgoConf Aptiv_Algo_conf = 30;
+  optional apollo.control.Aptiv_AlgoConf aptiv_algo_conf = 30;
 
   optional double trajectory_period = 31;
   optional double chassis_period = 32;
