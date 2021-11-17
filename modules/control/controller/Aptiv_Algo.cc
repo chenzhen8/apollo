@@ -102,7 +102,7 @@ Status Aptiv_AlgoController::Init(std::shared_ptr<DependencyInjector> injector,
   }
   injector_ = injector;
   const Aptiv_AlgoConf &Aptiv_Algo_conf =
-      control_conf_->aptiv_Algo_conf();
+      control_conf_->aptiv_algo_conf();
   double ts = Aptiv_Algo_conf.ts();
   bool enable_leadlag =
       Aptiv_Algo_conf.enable_reverse_leadlag_compensation();
