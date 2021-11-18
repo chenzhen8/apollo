@@ -8,6 +8,7 @@ import "modules/control/proto/pad_msg.proto";
 import "modules/localization/proto/localization.proto";
 import "modules/planning/proto/planning.proto";
 import "modules/perception/proto/traffic_light_detection.proto";
+import "modules/perception/proto/perception_obstacle.proto";
 
 message LocalView {
   optional apollo.common.Header header = 1;
@@ -16,4 +17,5 @@ message LocalView {
   optional apollo.localization.LocalizationEstimate localization = 4;
   optional PadMessage pad_msg = 5;
   optional apollo.perception.TrafficLightDetection trafficLightDetection = 6;
+  optional apollo.perception.PerceptionObstacles perceptionObstacle = 7;
 }
