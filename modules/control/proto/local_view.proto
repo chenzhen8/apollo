@@ -16,6 +16,6 @@ message LocalView {
   optional apollo.planning.ADCTrajectory trajectory = 3;
   optional apollo.localization.LocalizationEstimate localization = 4;
   optional PadMessage pad_msg = 5;
-  optional apollo.perception.TrafficLightDetection trafficLightDetection = 6;
-  optional apollo.perception.PerceptionObstacles perceptionObstacle = 7;
+  optional apollo.perception.TrafficLightDetection trafficLightdetection = 6;
+  optional apollo.perception.PerceptionObstacles perceptionobstacle = 7;
 }
