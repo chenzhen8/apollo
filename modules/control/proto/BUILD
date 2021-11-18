@@ -229,7 +229,7 @@ proto_library(
         "//modules/common/proto:header_proto",
         "//modules/localization/proto:localization_proto",
         "//modules/planning/proto:planning_proto",
-        "//modules/perception/proto:perception_proto",
+        "//modules/perception/camera/app/proto:perception_proto",
     ],
 )
 
@@ -242,7 +242,7 @@ py_proto_library(
         "//modules/common/proto:header_py_pb2",
         "//modules/localization/proto:localization_py_pb2",
         "//modules/planning/proto:planning_py_pb2",
-        "//modules/perception/proto:perception_py_pb2",
+        "//modules/perception/camera/app/proto:perception_py_pb2",
     ],
 )
 
