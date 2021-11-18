@@ -136,7 +136,7 @@ Status LatLonControllerSubmodule::ProduceControlCoreCommand(
   // fill out control command sequentially
   Status lateral_status = lateral_controller_.ComputeControlCommand(
       &local_view.localization(), &local_view.chassis(),
-      &local_view.trajectory(), &local_view_.perceptionobstacle(), &local_view_.trafficlightdetection(),control_core_command);
+      &local_view.trajectory(), &local_view.perceptionobstacle(), &local_view.trafficlightdetection(),control_core_command);
 
   // return error if lateral status has error
   if (!lateral_status.ok()) {
@@ -145,7 +145,7 @@ Status LatLonControllerSubmodule::ProduceControlCoreCommand(
 
   Status longitudinal_status = longitudinal_controller_.ComputeControlCommand(
       &local_view.localization(), &local_view.chassis(),
-      &local_view.trajectory(), &local_view_.perceptionobstacle(), &local_view_.trafficlightdetection(),control_core_command);
+      &local_view.trajectory(), &local_view.perceptionobstacle(), &local_view.trafficlightdetection(),control_core_command);
   return longitudinal_status;
 }
 
