@@ -475,6 +475,8 @@ Status ControlComponent::CheckInput(LocalView *local_view) {
   ADEBUG << "Received localization:"
          << local_view->localization().ShortDebugString();
   ADEBUG << "Received chassis:" << local_view->chassis().ShortDebugString();
+  ADEBUG << "Received perceptionobstacle:" << local_view->perceptionobstacle().ShortDebugString();
+  ADEBUG << "Received trafficlightdetection:" << local_view->trafficlightdetection().ShortDebugString();
 
   if (!local_view->trajectory().estop().is_estop() &&
       local_view->trajectory().trajectory_point().empty()) {
