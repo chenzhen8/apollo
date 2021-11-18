@@ -316,6 +316,7 @@ Status LatController::ComputeControlCommand(
     const localization::LocalizationEstimate *localization,
     const canbus::Chassis *chassis,
     const planning::ADCTrajectory *planning_published_trajectory,
+    const perception::PerceptionObstacles *perceptionobstacle,const perception::TrafficLightDetection *trafficlightdetection,
     ControlCommand *cmd) {
   auto vehicle_state = injector_->vehicle_state();
 

@@ -157,6 +157,7 @@ Status LonController::ComputeControlCommand(
     const localization::LocalizationEstimate *localization,
     const canbus::Chassis *chassis,
     const planning::ADCTrajectory *planning_published_trajectory,
+    const perception::PerceptionObstacles *perceptionobstacle,const perception::TrafficLightDetection *trafficlightdetection,
     control::ControlCommand *cmd) {
   localization_ = localization;
   chassis_ = chassis;

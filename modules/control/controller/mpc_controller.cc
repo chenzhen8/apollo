@@ -301,6 +301,7 @@ Status MPCController::ComputeControlCommand(
     const localization::LocalizationEstimate *localization,
     const canbus::Chassis *chassis,
     const planning::ADCTrajectory *planning_published_trajectory,
+    const perception::PerceptionObstacles *perceptionobstacle,const perception::TrafficLightDetection *trafficlightdetection,
     ControlCommand *cmd) {
   trajectory_analyzer_ =
       std::move(TrajectoryAnalyzer(planning_published_trajectory));
