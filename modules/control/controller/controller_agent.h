@@ -65,6 +65,7 @@ class ControllerAgent {
   common::Status ComputeControlCommand(
       const localization::LocalizationEstimate *localization,
       const canbus::Chassis *chassis, const planning::ADCTrajectory *trajectory,
+      const perception::PerceptionObstacles *perceptionobstacle,const perception::TrafficLightDetection *trafficlightdetection,
       control::ControlCommand *cmd);
 
   /**

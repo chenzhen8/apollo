@@ -279,7 +279,7 @@ Status ControlComponent::ProduceControlCommand(
     // controller agent
     Status status_compute = controller_agent_.ComputeControlCommand(
         &local_view_.localization(), &local_view_.chassis(),
-        &local_view_.trajectory(), control_command);
+        &local_view_.trajectory(), &local_view_.perceptionobstacle(), &local_view_.trafficlightdetection(), control_command);
 
     if (!status_compute.ok()) {
       AERROR << "Control main function failed"

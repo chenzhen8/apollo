@@ -106,11 +106,12 @@ Status ControllerAgent::Init(std::shared_ptr<DependencyInjector> injector,
 Status ControllerAgent::ComputeControlCommand(
     const localization::LocalizationEstimate *localization,
     const canbus::Chassis *chassis, const planning::ADCTrajectory *trajectory,
+    const perception::PerceptionObstacles *perceptionobstacle,const perception::TrafficLightDetection *trafficlightdetection,
     control::ControlCommand *cmd) {
   for (auto &controller : controller_list_) {
     ADEBUG << "controller:" << controller->Name() << " processing ...";
     double start_timestamp = Clock::NowInSeconds();
-    controller->ComputeControlCommand(localization, chassis, trajectory, cmd);
+    controller->ComputeControlCommand(localization, chassis, trajectory, perceptionobstacle, trafficlightdetection, cmd);
     double end_timestamp = Clock::NowInSeconds();
     const double time_diff_ms = (end_timestamp - start_timestamp) * 1000;
 
