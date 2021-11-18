@@ -369,7 +369,7 @@ bool ControlComponent::Proc() {
     local_view_.mutable_trajectory()->CopyFrom(latest_trajectory_);
     local_view_.mutable_localization()->CopyFrom(latest_localization_);
     local_view_.mutable_perceptionobstacle()->CopyFrom(latest_perceptionObstacle_);
-    local_view_.mutable_trafficLightdetection()->CopyFrom(latest_trafficLightDetection_);
+    local_view_.mutable_trafficlightdetection()->CopyFrom(latest_trafficLightDetection_);
     if (pad_msg != nullptr) {
       local_view_.mutable_pad_msg()->CopyFrom(pad_msg_);
     }
