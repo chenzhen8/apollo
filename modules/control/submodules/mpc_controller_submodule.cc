@@ -122,7 +122,7 @@ Status MPCControllerSubmodule::ProduceControlCoreCommand(
 
   Status status = mpc_controller_.ComputeControlCommand(
       &local_view.localization(), &local_view.chassis(),
-      &local_view.trajectory(), control_core_command);
+      &local_view.trajectory(), &local_view_.perceptionobstacle(), &local_view_.trafficlightdetection(),control_core_command);
 
   ADEBUG << "MPC controller submodule finished.";
 
