@@ -14,7 +14,17 @@
 //
 #include "ACC_core2015b.h"
 #include "ACC_core2015b_private.h"
-
+// Invariant block signals (auto storage)
+const ConstB_ACC_core2015b_T ACC_core2015b_ConstB = {
+  12.0
+  ,                                    // '<S14>/Product'
+  6.0
+  ,                                    // '<S14>/Switch'
+  24.0
+  ,                                    // '<S13>/Product'
+  1
+  // '<S13>/Logical Operator'
+};
 // Model step function
 void ACC_core2015bModelClass::step()
 {

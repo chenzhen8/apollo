@@ -25,8 +25,7 @@
 
 #include "ACC_core2015b_types.h"
 #include "rt_zcfcn.h"
-#include "rtGetInf.h"
-#include "rt_nonfinite.h"
+#include "rtGetNaN.h"
 
 // Macros for accessing real-time model data structure
 #ifndef rtmGetErrorStatus
