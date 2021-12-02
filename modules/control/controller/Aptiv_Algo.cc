@@ -26,6 +26,7 @@
 #include "modules/control/common/control_gflags.h"
 #include "modules/localization/common/localization_gflags.h"
 
+
 namespace apollo {
 namespace control {
 
@@ -124,6 +125,7 @@ Status Aptiv_AlgoController::Init(std::shared_ptr<DependencyInjector> injector,
 
   LoadControlCalibrationTable(aptiv_algo_conf);
   controller_initialized_ = true;
+  ACC_core2015bModelClass_.initialize();
 
   return Status::OK();
 }
@@ -159,6 +161,9 @@ Status Aptiv_AlgoController::ComputeControlCommand(
     const planning::ADCTrajectory *planning_published_trajectory,
     const perception::PerceptionObstacles *perceptionobstacle,const perception::TrafficLightDetection *trafficlightdetection,
     control::ControlCommand *cmd) {
+
+      ACC_core2015bModelClass_.step();
+
   localization_ = localization;
   chassis_ = chassis;
 

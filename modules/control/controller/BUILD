@@ -114,6 +114,7 @@ cc_library(
         "//modules/control/proto:mrac_conf_cc_proto",
         "//modules/control/proto:pad_msg_cc_proto",
         "//modules/localization/common:localization_common",
+        "//modules/control/controller/ACC_core2015b_ert_rtw:ACC_core2015b",
         "@com_google_absl//absl/strings",
     ],
 )

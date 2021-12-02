@@ -33,6 +33,8 @@
 #include "modules/control/common/pid_controller.h"
 #include "modules/control/common/trajectory_analyzer.h"
 #include "modules/control/controller/controller.h"
+#include "modules/control/controller/ACC_core2015b_ert_rtw/ACC_core2015b.h"
+
 
 /**
  * @namespace apollo::control
@@ -145,6 +147,8 @@ class Aptiv_AlgoController : public Controller {
   common::VehicleParam vehicle_param_;
 
   std::shared_ptr<DependencyInjector> injector_;
+
+  ACC_core2015bModelClass ACC_core2015bModelClass_;
 };
 }  // namespace control
 }  // namespace apollo
