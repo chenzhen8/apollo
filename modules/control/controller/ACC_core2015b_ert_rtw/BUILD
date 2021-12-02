@@ -51,6 +51,7 @@ cc_library(
         ":solver_zc",
         ":rtwtypes",
         ":zero_crossing_types",
+    ],
 )
 
 cc_library(
