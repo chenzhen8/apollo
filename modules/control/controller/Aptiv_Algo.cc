@@ -161,8 +161,14 @@ Status Aptiv_AlgoController::ComputeControlCommand(
     const planning::ADCTrajectory *planning_published_trajectory,
     const perception::PerceptionObstacles *perceptionobstacle,const perception::TrafficLightDetection *trafficlightdetection,
     control::ControlCommand *cmd) {
-
-      ACC_core2015bModelClass_.step();
+      input_->Acc_Enable = 0;
+      input_->DMBrake = 0;
+      input_->Initialbrakethreshold_1 = 0;
+      input_->ReadCarvms_1 = 0;
+      input_->ReadinitdesiredtimegapfromInf_1 = 0;
+      input_->ReadUserdesiredspeed_1 = 0;
+      input_->ReadUserdesiredtimegap_1 = 0;
+      ExtY_ACC_core2015b_T output_= ACC_core2015bModelClass_.step(input_);
 
   localization_ = localization;
   chassis_ = chassis;

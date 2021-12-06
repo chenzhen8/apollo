@@ -26,7 +26,7 @@ const ConstB_ACC_core2015b_T ACC_core2015b_ConstB = {
   // '<S13>/Logical Operator'
 };
 // Model step function
-void ACC_core2015bModelClass::step()
+ExtY_ACC_core2015b_T ACC_core2015bModelClass::step(const ExtU_ACC_core2015b_T *Input_)
 {
   real_T rtb_desiredorNOTSET;
   real_T rtb_Divide_g;
@@ -34,6 +34,14 @@ void ACC_core2015bModelClass::step()
   boolean_T rtb_targetdetected;
   real_T u0;
   int32_T rtb_targetdetected_0;
+
+      ACC_core2015b_U.Acc_Enable = Input_->Acc_Enable;
+      ACC_core2015b_U.DMBrake = Input_->DMBrake;
+      ACC_core2015b_U.Initialbrakethreshold_1 = Input_->Initialbrakethreshold_1;
+      ACC_core2015b_U.Initialbrakethreshold_1 = Input_->ReadCarvms_1;
+      ACC_core2015b_U.ReadinitdesiredtimegapfromInf_1 = Input_->ReadinitdesiredtimegapfromInf_1;
+      ACC_core2015b_U.ReadUserdesiredspeed_1 = Input_->ReadUserdesiredspeed_1;
+      ACC_core2015b_U.ReadUserdesiredtimegap_1 = Input_->ReadUserdesiredtimegap_1;
 
   // Switch: '<S2>/Switch Brake  ACC on//off' incorporates:
   //   Constant: '<S2>/ACC Off'
@@ -180,6 +188,7 @@ void ACC_core2015bModelClass::step()
   //   Constant: '<S5>/Constant'
 
   ACC_core2015b_DW.Memory_PreviousInput = 1.0;
+  return ACC_core2015b_Y;
 }
 
 // Model initialize function

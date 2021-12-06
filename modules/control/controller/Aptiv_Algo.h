@@ -117,7 +117,7 @@ class Aptiv_AlgoController : public Controller {
                         common::DigitalFilter *digital_filter);
 
   void CloseLogFile();
-
+  
   const localization::LocalizationEstimate *localization_ = nullptr;
   const canbus::Chassis *chassis_ = nullptr;
 
@@ -149,6 +149,8 @@ class Aptiv_AlgoController : public Controller {
   std::shared_ptr<DependencyInjector> injector_;
 
   ACC_core2015bModelClass ACC_core2015bModelClass_;
+  const ExtU_ACC_core2015b_T *input_ = nullptr;
+  const ExtY_ACC_core2015b_T output_ = {0};
 };
 }  // namespace control
 }  // namespace apollo

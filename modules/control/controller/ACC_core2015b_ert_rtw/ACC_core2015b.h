@@ -113,7 +113,7 @@ class ACC_core2015bModelClass {
   void initialize();
 
   // model step function
-  void step();
+  ExtY_ACC_core2015b_T step(const ExtU_ACC_core2015b_T *Input_);
 
   // model terminate function
   void terminate();
