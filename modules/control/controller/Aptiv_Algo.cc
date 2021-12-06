@@ -169,6 +169,12 @@ Status Aptiv_AlgoController::ComputeControlCommand(
       input_->ReadUserdesiredspeed_1 = 0;
       input_->ReadUserdesiredtimegap_1 = 0;
       ExtY_ACC_core2015b_T output_= ACC_core2015bModelClass_.step(input_);
+      
+      if (output_.Write_ACC_IsActive){
+           
+            cmd->set_acceleration(output_.WritedesiredAx_1);
+      }
+      
 
   localization_ = localization;
   chassis_ = chassis;
