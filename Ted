@@ -1,0 +1,5 @@
+#!/bin/sh
+cd /home/ted/g/apollo/
+bash docker/scripts/dev_start.sh
+bash docker/scripts/dev_into.sh
+./apollo.sh build_cpu
